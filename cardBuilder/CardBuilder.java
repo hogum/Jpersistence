@@ -92,8 +92,13 @@ public class CardBuilder {
 
         try {
 
+                BufferedWriter bw = new BufferedWriter(
+                    new FileWriter(file));
+
+                
+
         } catch (Exception ex) {
-            
+
         }
     }
 
