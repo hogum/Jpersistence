@@ -27,7 +27,7 @@ public class CardBuilder {
     private JTextArea questionArea;
     private JTextArea answerArea;
     private JFrame frame;
-    //
+    private ArrayList<DrawCard> cardList;
 
     
     public void start() {
@@ -35,6 +35,7 @@ public class CardBuilder {
         frame = new JFrame("Card Creator");
         JPanel panel = new JPanel();
         Font textFont = new Font("Cambria", Font.BOLD, 12);
+        cardList = new ArrayList<DrawCard>();
 
         questionArea = new JTextArea(6, 20);
         questionArea.setLineWrap(true);
@@ -89,16 +90,26 @@ public class CardBuilder {
     }
 
     private void saveFile(File file) {
-
+        
+        //cardList.stream()
+        //Iterator iter = new Iterator();       
+       
         try {
 
                 BufferedWriter bw = new BufferedWriter(
                     new FileWriter(file));
 
-                
+
+                for(DrawCard card: cardList) {
+
+                    bw.write(card.getQuestion());
+                    bw.write(card.getAnswer());
+                }
+
+                bw.close();
 
         } catch (Exception ex) {
-
+            ex.printStackTrace();
         }
     }
 
@@ -111,7 +122,12 @@ public class CardBuilder {
 
     public class SaveMenuListener implements ActionListener {
 
-        public void actionPerformed(ActionEvent ev) {       
+        public void actionPerformed(ActionEvent ev) {
+
+            DrawCard card = new DrawCard(
+                questionArea.getText(), answerArea.getText());
+
+            cardList.add(card);   
 
             JFileChooser saveFileChooser = new JFileChooser();
             saveFileChooser.showSaveDialog(frame);
@@ -123,6 +139,8 @@ public class CardBuilder {
          
          public void actionPerformed(ActionEvent ev) {
 
+            cardList.clear();
+            clearCard();
          }
     }
 
