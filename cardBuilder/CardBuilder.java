@@ -8,11 +8,18 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JMenuBar;
+import javax.swing.JFileChooser;
 
 import java.util.ArrayList;
 
 import java.awt.Font;
 import java.awt.BorderLayout;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class CardBuilder {
@@ -27,7 +34,7 @@ public class CardBuilder {
 
         frame = new JFrame("Card Creator");
         JPanel panel = new JPanel();
-        Font textFont = new Font("Calibri", Font.BOLD, 13);
+        Font textFont = new Font("Cambria", Font.BOLD, 12);
 
         questionArea = new JTextArea(6, 20);
         questionArea.setLineWrap(true);
@@ -53,16 +60,22 @@ public class CardBuilder {
         JLabel quesLabel = new JLabel("Question");
         JLabel ansLabel = new JLabel("Answer");
 
+        Font panelFont = new Font("sanserif", Font.BOLD, 12);
+
         panel.add(quesLabel);
         panel.add(questionScrollPane);
         panel.add(ansLabel);
         panel.add(answerScrollPane);
         panel.add(nextCardButton);
+        panel.setFont(new Font("sanserif", Font.PLAIN, 12));
 
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem newFileMenuItem = new JMenuItem("New");
         JMenuItem saveFileMenuItem = new JMenuItem("Save");
+
+        saveFileMenuItem.addActionListener(new SaveMenuListener());
+        newFileMenuItem.addActionListener(new NewFileMenuListener());
 
         fileMenu.add(newFileMenuItem);
         fileMenu.add(saveFileMenuItem);
@@ -70,8 +83,42 @@ public class CardBuilder {
 
         frame.setJMenuBar(menuBar);
         frame.getContentPane().add(BorderLayout.CENTER, panel);
-        frame.setSize(500, 500);
+        frame.setSize(700, 600);
         frame.setVisible(true);
 
     }
+
+    private void saveFile(File file) {
+
+        try {
+
+        } catch (Exception ex) {
+            
+        }
+    }
+
+    private void clearCard() {
+        questionArea.setText("");
+        answerArea.setText("");
+
+        questionArea.requestFocus();
+    }
+
+    public class SaveMenuListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent ev) {       
+
+            JFileChooser saveFileChooser = new JFileChooser();
+            saveFileChooser.showSaveDialog(frame);
+            saveFile(saveFileChooser.getSelectedFile());
+        }
+    }
+
+    public class NewFileMenuListener implements ActionListener {
+         
+         public void actionPerformed(ActionEvent ev) {
+
+         }
+    }
+
 }
