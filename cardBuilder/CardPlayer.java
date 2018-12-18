@@ -50,14 +50,40 @@ public class CardPlayer {
             displayArea);
         displayScrollPane.setVerticalScrollBarPolicy(
             ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        displayScrollPane.setHorizontallScrollBarPolicy(
+        displayScrollPane.setHorizontalScrollBarPolicy(
             ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         cardButton = new JButton("See Question");
         cardButton.addActionListener(new CardButtonListener());
-        
+
         panel.add(displayScrollPane);
         panel.add(cardButton);
 
-    }  
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        JMenuItem loadCardMenuItem = new JMenuItem("Load Cards");
+        loadCardMenuItem.addActionListener(new LoadCardMenuListener());
+        fileMenu.add(loadCardMenuItem);
+        menuBar.add(fileMenu);
+
+        frame.setJMenuBar(menuBar);
+        frame.getContentPane().add(BorderLayout.CENTER, panel);
+        frame.setSize(650, 510);
+        frame.setVisible(true);
+    }
+
+    
+    class LoadCardMenuListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent ev) {
+
+        }
+    }
+
+    class CardButtonListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent ev) {
+            
+        }
+    }
 }
