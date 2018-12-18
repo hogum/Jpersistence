@@ -23,6 +23,9 @@ import java.awt.event.ActionEvent;
 
 
 public class CardBuilder {
+    /*
+    Creates and saves the set of cards
+    */
 
     private JTextArea questionArea;
     private JTextArea answerArea;
@@ -102,8 +105,8 @@ public class CardBuilder {
 
                 for(DrawCard card: cardList) {
 
-                    bw.write(card.getQuestion());
-                    bw.write(card.getAnswer());
+                    bw.write(card.getQuestion() + "/");
+                    bw.write(card.getAnswer() + "\n");
                 }
 
                 bw.close();
