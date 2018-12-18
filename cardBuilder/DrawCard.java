@@ -8,4 +8,14 @@ public class DrawCard {
         this.question = question;
         this.answer = answer;
     }
+
+    public String getQuestion() {
+
+        return question;
+    }
+
+    public String getAnswer() {
+
+        return answer;
+    }
 }
